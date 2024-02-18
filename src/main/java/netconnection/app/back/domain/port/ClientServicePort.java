@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ClientServicePort {
 
-    void saveClient(ClientDTO clientDTO);
+    Client save(Client clientDTO);
 
 
 }
