@@ -1,5 +1,7 @@
 package netconnection.app.back.domain.model;
 
+import io.micrometer.common.util.StringUtils;
+
 import java.time.LocalDate;
 
 public class CPF {
@@ -26,6 +28,9 @@ public class CPF {
     }
 
     private boolean isNumberValid() {
+
+        if(StringUtils.isEmpty(this.number)) return false;
+
         // Remover caracteres não numéricos
         this.number = this.number.replaceAll("[^0-9]", "");
 
