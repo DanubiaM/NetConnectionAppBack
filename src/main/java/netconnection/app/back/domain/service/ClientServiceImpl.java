@@ -10,11 +10,9 @@ import java.util.List;
 public class ClientServiceImpl implements ClientServicePort {
 
 
-    ClientServicePort clientServicePort;
     ClientRepositoryPort clientRepositoryPort;
 
-    public ClientServiceImpl(ClientServicePort _clientServicePort, ClientRepositoryPort _clientRepositoryPort){
-        this.clientServicePort = _clientServicePort;
+    public ClientServiceImpl( ClientRepositoryPort _clientRepositoryPort){
         this.clientRepositoryPort =_clientRepositoryPort;
     }
 
@@ -35,7 +33,6 @@ public class ClientServiceImpl implements ClientServicePort {
 
     @Override
     public List<Client> findAll() {
-
 
         return clientRepositoryPort.findAll();
     }
