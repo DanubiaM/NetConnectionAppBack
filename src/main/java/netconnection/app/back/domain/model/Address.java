@@ -1,7 +1,9 @@
 package netconnection.app.back.domain.model;
 
-public class Address {
 
+import io.micrometer.common.util.StringUtils;
+
+public class Address {
     private String description;
 
     private String complement;
@@ -21,21 +23,21 @@ public class Address {
     }
 
     private void validate() {
-        if(this.description.isEmpty()){
+        if(StringUtils.isEmpty(this.description) ){
             throw new IllegalArgumentException("Description must not be empty");
         }
 
-        if(this.complement.isEmpty()){
+        if(StringUtils.isEmpty(this.complement)){
             throw new IllegalArgumentException("Complement must not be empty");
         }
 
-        if(this.city.isEmpty()){
+        if(StringUtils.isEmpty(this.city)){
             throw new IllegalArgumentException("City must not be empty");
         }
-        if(this.cep.isEmpty()){
+        if(StringUtils.isEmpty(this.cep)){
             throw new IllegalArgumentException("CEP must not be empty");
         }
-        if(this.cep.matches("\\d{5}-\\d{3}")){
+        if(!isCEPValid()){
             throw new IllegalArgumentException("Formatter CEP invalid");
         }
 
