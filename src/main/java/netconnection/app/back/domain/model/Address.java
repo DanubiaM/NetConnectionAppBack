@@ -22,6 +22,14 @@ public class Address {
 
     }
 
+    private boolean isCEPValid() {
+
+        if (!this.cep.contains("-")) {
+            this.cep = this.cep.substring(0, 5) + "-" + this.cep.substring(5);
+        }
+        return this.cep.matches("\\d{5}-\\d{3}");
+    }
+
     private void validate() {
         if(StringUtils.isEmpty(this.description) ){
             throw new IllegalArgumentException("Description must not be empty");
