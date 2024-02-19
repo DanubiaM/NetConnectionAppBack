@@ -1,5 +1,6 @@
 package netconnection.app.back.domain.model;
 
+import io.micrometer.common.util.StringUtils;
 import lombok.Getter;
 
 public class Client {
@@ -59,19 +60,19 @@ public class Client {
 
 
     private void validate() {
-        if(this.id.isEmpty()){
+        if(StringUtils.isEmpty(this.id)){
             throw new IllegalArgumentException("ID must not be empty");
 
         }
-        if(this.name.isEmpty()){
+        if(StringUtils.isEmpty(this.name)){
             throw new IllegalArgumentException("Name must not be empty");
 
         }
-        if (this.email.isEmpty()){
+        if (StringUtils.isEmpty(this.email)){
             throw new IllegalArgumentException("Email must not be empty");
 
         }
-        if(this.phone.isEmpty()){
+        if(StringUtils.isEmpty(this.phone)){
             throw new IllegalArgumentException("Phone number must not be empty");
 
         }
