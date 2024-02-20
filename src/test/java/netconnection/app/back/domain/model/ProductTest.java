@@ -1,5 +1,6 @@
 package netconnection.app.back.domain.model;
 
+import netconnection.app.back.domain.model.quotation.Product;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;

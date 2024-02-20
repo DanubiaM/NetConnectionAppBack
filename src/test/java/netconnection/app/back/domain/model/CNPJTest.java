@@ -1,15 +1,13 @@
 package netconnection.app.back.domain.model;
 
-import netconnection.app.back.domain.model.Address;
-import netconnection.app.back.domain.model.CNPJ;
-import netconnection.app.back.domain.model.STATUS_COMPANY;
+import netconnection.app.back.domain.model._shared.Address;
+import netconnection.app.back.domain.model.company.CNPJ;
+import netconnection.app.back.domain.model.company.STATUS_COMPANY;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.time.LocalDate;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

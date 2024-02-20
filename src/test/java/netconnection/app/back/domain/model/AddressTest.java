@@ -1,7 +1,6 @@
 package netconnection.app.back.domain.model;
 
-import netconnection.app.back.domain.model.Address;
-import netconnection.app.back.domain.model.Client;
+import netconnection.app.back.domain.model._shared.Address;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
@@ -15,10 +14,10 @@ public class AddressTest {
     @Test
     public void shoudlBeCreatedNewAddress(){
         //GIVE
-        Address addressClient = new Address("Rua A.", "Q10","VG","78144034");
+        Address addressCustomer = new Address("Rua A.", "Q10","VG","78144034");
         //WHEN
         //THEN
-        Assertions.assertNotNull(addressClient);
+        Assertions.assertNotNull(addressCustomer);
     }
 
     @Test

@@ -13,16 +13,16 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ItemBudgetTest {
+public class ItemQuotationTest {
 
     @Test
-    public void shouldBeCreatedItemBudget(){
+    public void shouldBeCreatedItemQuotation(){
 
         //GIVE
         List<String> keywords = List.of("A","B","C");
         Product newProduct = new Product("Product A", "Description Product A",
                                  345.5F,"www.anylink.com.br" ,keywords);
-        ItemBudget item = new ItemBudget(3, newProduct);
+        ItemQuotation item = new ItemQuotation(3, newProduct);
 
         //WHEN
 
@@ -44,11 +44,11 @@ public class ItemBudgetTest {
 
         //THEN
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                new ItemBudget(-2, newProduct));
+                new ItemQuotation(-2, newProduct));
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                new ItemBudget(0, newProduct));
+                new ItemQuotation(0, newProduct));
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                new ItemBudget(null, newProduct));
+                new ItemQuotation(null, newProduct));
 
     }
     @Test
@@ -60,7 +60,7 @@ public class ItemBudgetTest {
 
         //THEN
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                new ItemBudget(3, null));
+                new ItemQuotation(3, null));
 
 
 

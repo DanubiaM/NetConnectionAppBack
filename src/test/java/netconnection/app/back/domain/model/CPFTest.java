@@ -1,7 +1,6 @@
 package netconnection.app.back.domain.model;
 
-import netconnection.app.back.domain.model.Address;
-import netconnection.app.back.domain.model.CPF;
+import netconnection.app.back.domain.model.customer.CPF;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;

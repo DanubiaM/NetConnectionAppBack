@@ -1,6 +1,8 @@
 package netconnection.app.back.domain.model;
 
-import netconnection.app.back.domain.model.Address;
+import netconnection.app.back.domain.model.customer.CPF;
+import netconnection.app.back.domain.model.customer.Customer;
+import netconnection.app.back.domain.model._shared.Address;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
@@ -12,21 +14,21 @@ import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ClientTest {
+public class CustomerTest {
 
 
     @Test
-    public void shoudlBeCreatedClient(){
-        Address addressClient = new Address("Rua A.", "Q10","VG","78144034");
+    public void shoudlBeCreatedCustomer(){
+        Address addressCustomer = new Address("Rua A.", "Q10","VG","78144034");
         CPF cpf = new CPF("050.959.330-55", LocalDate.now());
 
         //WHEN
 
-        Client newClient = new Client(UUID.randomUUID().toString(), "João", "email@gmail.com", cpf,"(65) 99999999", addressClient);
+        Customer newCustomer = new Customer(UUID.randomUUID().toString(), "João", "email@gmail.com", cpf,"(65) 99999999", addressCustomer);
 
         //THEN
-        Assertions.assertNotNull(newClient);
-        Assertions.assertNotNull(newClient.getId());
+        Assertions.assertNotNull(newCustomer);
+        Assertions.assertNotNull(newCustomer.getId());
 
     }
 
@@ -34,7 +36,7 @@ public class ClientTest {
     public void shouldThrowExceptionWhenIdIsEmpty(){
         //GIVE
 
-        Address addressClient = new Address("Rua A.", "Q10","VG","78144034");
+        Address addressCustomer = new Address("Rua A.", "Q10","VG","78144034");
         CPF cpf = new CPF("050.959.330-55", LocalDate.now());
 
         //WHEN
@@ -42,14 +44,14 @@ public class ClientTest {
 
         //THEN
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                new Client("", "João", "email@gmail.com", cpf,"(65) 99999999", addressClient));
+                new Customer("", "João", "email@gmail.com", cpf,"(65) 99999999", addressCustomer));
 
     }
     @Test
     public void shouldThrowExceptionWhenNameIsEmpty(){
         //GIVE
 
-        Address addressClient = new Address("Rua A.", "Q10","VG","78144034");
+        Address addressCustomer = new Address("Rua A.", "Q10","VG","78144034");
         CPF cpf = new CPF("050.959.330-55", LocalDate.now());
 
         //WHEN
@@ -57,14 +59,14 @@ public class ClientTest {
 
         //THEN
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                new Client(UUID.randomUUID().toString(),"", "email@gmail.com", cpf,"(65) 99999999", addressClient));
+                new Customer(UUID.randomUUID().toString(),"", "email@gmail.com", cpf,"(65) 99999999", addressCustomer));
 
     }
     @Test
     public void shouldThrowExceptionWhenEmailIsEmpty(){
         //GIVE
 
-        Address addressClient = new Address("Rua A.", "Q10","VG","78144034");
+        Address addressCustomer = new Address("Rua A.", "Q10","VG","78144034");
         CPF cpf = new CPF("050.959.330-55", LocalDate.now());
 
         //WHEN
@@ -72,14 +74,14 @@ public class ClientTest {
 
         //THEN
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                new Client(UUID.randomUUID().toString(), "João", "", cpf,"(65) 99999999", addressClient));
+                new Customer(UUID.randomUUID().toString(), "João", "", cpf,"(65) 99999999", addressCustomer));
 
     }
     @Test
     public void shouldThrowExceptionWhenPhoneIsEmpty(){
         //GIVE
 
-        Address addressClient = new Address("Rua A.", "Q10","VG","78144034");
+        Address addressCustomer = new Address("Rua A.", "Q10","VG","78144034");
         CPF cpf = new CPF("050.959.330-55", LocalDate.now());
 
         //WHEN
@@ -87,7 +89,7 @@ public class ClientTest {
 
         //THEN
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                new Client(UUID.randomUUID().toString(), "João", "email@gmail.com", cpf,"", addressClient));
+                new Customer(UUID.randomUUID().toString(), "João", "email@gmail.com", cpf,"", addressCustomer));
 
     }
 }
