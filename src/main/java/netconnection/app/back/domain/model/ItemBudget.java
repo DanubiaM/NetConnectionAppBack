@@ -16,7 +16,7 @@ public class ItemBudget {
     private void valide() {
 
         if(quantity == null){
-            throw new IllegalArgumentException("Amount must not be empty");
+            throw new IllegalArgumentException("Quantity must not be empty");
         }
 
         if(quantity <= 0){
@@ -24,7 +24,7 @@ public class ItemBudget {
         }
 
         if(this.product ==  null){
-            throw new IllegalArgumentException("Amount must not be empty");
+            throw new IllegalArgumentException("Product must not be empty");
         }
 
     }
