@@ -6,13 +6,13 @@ import java.util.UUID;
 
 public class Company {
 
-    private String id = UUID.randomUUID().toString();
+    private String id;
     private CNPJ cnpj;
     private String name;
     private String phone;
     private String email;
 
-    public Company(CNPJ _cnpj, String _name, String _phone, String _email){
+    public Company(String _id, CNPJ _cnpj, String _name, String _phone, String _email){
         this.cnpj = _cnpj;
         this.name = _name;
         this.phone = _phone;
