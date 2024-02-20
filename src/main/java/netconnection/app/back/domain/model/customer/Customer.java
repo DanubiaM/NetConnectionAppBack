@@ -1,9 +1,9 @@
-package netconnection.app.back.domain.model;
+package netconnection.app.back.domain.model.customer;
 
 import io.micrometer.common.util.StringUtils;
-import lombok.Getter;
+import netconnection.app.back.domain.model._shared.Address;
 
-public class Client {
+public class Customer {
 
     private String id;
     private String name;
@@ -16,11 +16,11 @@ public class Client {
 
     private Address address;
 
-    public Client(){
+    public Customer(){
 
     }
 
-    public Client(String _id, String _name, String _email, CPF _cpf, String _phone, Address _address){
+    public Customer(String _id, String _name, String _email, CPF _cpf, String _phone, Address _address){
         this.id = _id;
         this.name = _name;
         this.email = _email;
