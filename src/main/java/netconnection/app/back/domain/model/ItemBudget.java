@@ -1,15 +1,13 @@
 package netconnection.app.back.domain.model;
 
-import java.util.UUID;
-
 public class ItemBudget {
 
-    private Integer amount;
+    private Integer quantity;
     private Product product;
 
 
-    public ItemBudget(Integer _amount, Product _product) {
-        this.amount = _amount;
+    public ItemBudget(Integer _quantity, Product _product) {
+        this.quantity = _quantity;
         this.product = _product;
 
         this.valide();
@@ -17,12 +15,12 @@ public class ItemBudget {
 
     private void valide() {
 
-        if(amount == null){
+        if(quantity == null){
             throw new IllegalArgumentException("Amount must not be empty");
         }
 
-        if(amount <= 0){
-            throw new IllegalArgumentException("Amount must not be less or equal than 0");
+        if(quantity <= 0){
+            throw new IllegalArgumentException("Quantity must not be less or equal than 0");
         }
 
         if(this.product ==  null){

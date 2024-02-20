@@ -31,7 +31,7 @@ public class ItemBudgetTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenAmoundIsInvalid(){
+    public void shouldThrowExceptionWhenQuantitytIsInvalid(){
 
         //GIVE
         List<String> keywords = List.of("A","B","C");
