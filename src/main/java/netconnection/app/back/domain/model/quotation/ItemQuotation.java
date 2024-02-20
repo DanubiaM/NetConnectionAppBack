@@ -1,12 +1,12 @@
-package netconnection.app.back.domain.model;
+package netconnection.app.back.domain.model.quotation;
 
-public class ItemBudget {
+public class ItemQuotation {
 
     private Integer quantity;
     private Product product;
 
 
-    public ItemBudget(Integer _quantity, Product _product) {
+    public ItemQuotation(Integer _quantity, Product _product) {
         this.quantity = _quantity;
         this.product = _product;
 
