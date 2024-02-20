@@ -1,6 +1,5 @@
 package netconnection.app.back.infra.config;
 
-import netconnection.app.back.domain.service.ClientServiceImpl;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration

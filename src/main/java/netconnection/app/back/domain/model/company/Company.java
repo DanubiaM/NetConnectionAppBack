@@ -13,6 +13,7 @@ public class Company {
     private String email;
 
     public Company(String _id, CNPJ _cnpj, String _name, String _phone, String _email){
+        this.id = _id;
         this.cnpj = _cnpj;
         this.name = _name;
         this.phone = _phone;
