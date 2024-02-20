@@ -1,7 +1,5 @@
 package netconnection.app.back.domain.service;
 
-import netconnection.app.back.domain.port.FakeClientRepositoryPort;
-import netconnection.app.back.domain.model.Address;
 import netconnection.app.back.domain.model.CPF;
 import netconnection.app.back.domain.model.Client;
 import netconnection.app.back.domain.service.ClientServiceImpl;

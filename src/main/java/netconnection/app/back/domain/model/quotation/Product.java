@@ -1,10 +1,8 @@
-package netconnection.app.back.domain.model;
+package netconnection.app.back.domain.model.quotation;
 
 import io.micrometer.common.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Product {
 

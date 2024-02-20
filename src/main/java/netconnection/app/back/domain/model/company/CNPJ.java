@@ -1,6 +1,7 @@
-package netconnection.app.back.domain.model;
+package netconnection.app.back.domain.model.company;
 
 import io.micrometer.common.util.StringUtils;
+import netconnection.app.back.domain.model._shared.Address;
 
 public class CNPJ {
     String number;

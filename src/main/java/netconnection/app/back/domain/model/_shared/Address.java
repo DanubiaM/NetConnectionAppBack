@@ -1,4 +1,4 @@
-package netconnection.app.back.domain.model;
+package netconnection.app.back.domain.model._shared;
 
 
 import io.micrometer.common.util.StringUtils;
