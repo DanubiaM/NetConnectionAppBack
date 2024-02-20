@@ -1,8 +1,9 @@
 package netconnection.app.back.domain.service;
 
-import netconnection.app.back.domain.model.CPF;
-import netconnection.app.back.domain.model.Client;
-import netconnection.app.back.domain.service.ClientServiceImpl;
+import netconnection.app.back.domain.port.FakeCustomerRepositoryPort;
+import netconnection.app.back.domain.model._shared.Address;
+import netconnection.app.back.domain.model.customer.CPF;
+import netconnection.app.back.domain.model.customer.Customer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,61 +17,61 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ClientServiceTest {
+public class CustomerServiceTest {
 
-    private static ClientServiceImpl clientService;
+    private static CustomerServiceImpl customerService;
 
     @Before
     public void startService(){
-        clientService =  new ClientServiceImpl( new FakeClientRepositoryPort());
+        customerService =  new CustomerServiceImpl( new FakeCustomerRepositoryPort());
     }
 
     @Test
-    public void shoudlBeCreatedNewClient(){
+    public void shoudlBeCreatedNewCustomer(){
         //GIVE
 
-        Address addressClient = new Address("Rua A.", "Q10","VG","78144034");
+        Address addressCustomer = new Address("Rua A.", "Q10","VG","78144034");
         CPF cpf = new CPF("050.959.330-55", LocalDate.now());
-        Client clientNew = new Client(UUID.randomUUID().toString(), "João", "email@gmail.com", cpf,
-                "(65) 99999999", addressClient);
+        Customer customerNew = new Customer(UUID.randomUUID().toString(), "João", "email@gmail.com", cpf,
+                "(65) 99999999", addressCustomer);
 
         //WHEN
 
-        Client clientSave = clientService.save(clientNew);
+        Customer customerSave = customerService.save(customerNew);
 
         //THEN
-        assertEquals(clientNew,clientSave);
+        assertEquals(customerNew,customerSave);
 
     }
 
     @Test
-    public void shouldFindClientById(){
+    public void shouldFindCustomerById(){
         //GIVE
         String id = "2b1d7d0b-56d5-48d6-bf42-d4ca1ef3884a";
 
         //WHEN
-        Client client = clientService.findById(id);
+        Customer customer = customerService.findById(id);
 
 
         //THEN
-        assertNotNull(client.getId());
-        assertEquals(id,client.getId());
+        assertNotNull(customer.getId());
+        assertEquals(id,customer.getId());
 
     }
 
     @Test
-    public void shouldFindAllClients(){
+    public void shouldFindAllCustomer(){
         //GIVE
-        Address addressClient = new Address("Rua A.", "Q10","VG","78144034");
+        Address addressCustomer = new Address("Rua A.", "Q10","VG","78144034");
         CPF cpf = new CPF("050.959.330-55", LocalDate.now());
-        Client client1 = new Client(UUID.randomUUID().toString(), "João", "email@gmail.com", cpf,"(65) 99999999", addressClient);
-        Client client2 = new Client(UUID.randomUUID().toString(), "João", "email@gmail.com", cpf,"(65) 99999999", addressClient);
+        Customer customer1 = new Customer(UUID.randomUUID().toString(), "João", "email@gmail.com", cpf,"(65) 99999999", addressCustomer);
+        Customer customer2 = new Customer(UUID.randomUUID().toString(), "João", "email@gmail.com", cpf,"(65) 99999999", addressCustomer);
         //WHEN
-        clientService.save(client1);
-        clientService.save(client2);
+        customerService.save(customer1);
+        customerService.save(customer2);
 
         //THEN
-        assertEquals(2,clientService.findAll().size());
+        assertEquals(2, customerService.findAll().size());
     }
 
 
