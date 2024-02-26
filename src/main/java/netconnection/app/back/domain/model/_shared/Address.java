@@ -3,7 +3,7 @@ package netconnection.app.back.domain.model._shared;
 
 import io.micrometer.common.util.StringUtils;
 
-public class Address {
+public class Address extends ValueObject{
     private String description;
 
     private String complement;
@@ -13,41 +13,54 @@ public class Address {
     private String cep;
 
     public Address(String _description, String _complement, String _city, String _cep) {
-        this.description = _description;
-        this.complement = _complement;
-        this.city = _city;
-        this.cep = _cep;
+        super(new Notification());
 
-        this.validate();
+        this.setDescription(_description);
+        this.setComplement(_complement);
+        this.setCity(_city);
+        this.setCep(_cep);
 
-    }
-
-    private boolean isCEPValid() {
-
-        if (!this.cep.contains("-")) {
-            this.cep = this.cep.substring(0, 5) + "-" + this.cep.substring(5);
-        }
-        return this.cep.matches("\\d{5}-\\d{3}");
-    }
-
-    private void validate() {
-        if(StringUtils.isEmpty(this.description) ){
-            throw new IllegalArgumentException("Description must not be empty");
-        }
-
-        if(StringUtils.isEmpty(this.complement)){
-            throw new IllegalArgumentException("Complement must not be empty");
-        }
-
-        if(StringUtils.isEmpty(this.city)){
-            throw new IllegalArgumentException("City must not be empty");
-        }
-        if(StringUtils.isEmpty(this.cep)){
-            throw new IllegalArgumentException("CEP must not be empty");
-        }
-        if(!isCEPValid()){
-            throw new IllegalArgumentException("Formatter CEP invalid");
-        }
 
     }
+
+    private void setDescription(String description) {
+        if(StringUtils.isEmpty(description) ){
+            this.notification.addError("Description must not be empty");
+        }
+        this.description = description;
+    }
+
+    private void setComplement(String complement) {
+        if(StringUtils.isEmpty(complement)){
+            this.notification.addError("Complement must not be empty");
+        }
+        this.complement = complement;
+    }
+
+    private void setCity(String city) {
+        if(StringUtils.isEmpty(city)){
+            this.notification.addError("City must not be empty");
+        }
+        this.city = city;
+    }
+
+    private void setCep(String cep) {
+        if(StringUtils.isEmpty(cep)){
+            this.notification.addError("CEP must not be empty");
+        }
+        if(!isCEPValid(cep)){
+            this.notification.addError("Invalid Format CEP");
+        }
+        this.cep = cep;
+    }
+
+    private boolean isCEPValid(String cep) {
+
+        if (!cep.contains("-")) {
+            cep = this.cep.substring(0, 5) + "-" + cep.substring(5);
+        }
+        return cep.matches("\\d{5}-\\d{3}");
+    }
+
+
 }
