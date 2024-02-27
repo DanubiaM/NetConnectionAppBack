@@ -1,4 +1,4 @@
-package netconnection.app.back.domain.model._shared;
+package netconnection.app.back.domain.model.validation;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package netconnection.app.back.domain.model._shared;
+package netconnection.app.back.domain.model.validation;
 
 public interface NotificationInterface {
     public void addError(String message);
