@@ -2,8 +2,10 @@ package netconnection.app.back.domain.model._shared;
 
 
 import io.micrometer.common.util.StringUtils;
+import netconnection.app.back.domain.model.ValueObject;
+import netconnection.app.back.domain.model.validation.Notification;
 
-public class Address extends ValueObject{
+public class Address extends ValueObject {
     private String description;
 
     private String complement;
@@ -47,6 +49,7 @@ public class Address extends ValueObject{
     private void setCep(String cep) {
         if(StringUtils.isEmpty(cep)){
             this.notification.addError("CEP must not be empty");
+            return;
         }
         if(!isCEPValid(cep)){
             this.notification.addError("Invalid Format CEP");
@@ -57,7 +60,7 @@ public class Address extends ValueObject{
     private boolean isCEPValid(String cep) {
 
         if (!cep.contains("-")) {
-            cep = this.cep.substring(0, 5) + "-" + cep.substring(5);
+            cep = cep.substring(0, 5) + "-" + cep.substring(5);
         }
         return cep.matches("\\d{5}-\\d{3}");
     }
