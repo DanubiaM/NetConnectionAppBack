@@ -2,80 +2,88 @@ package netconnection.app.back.domain.model.customer;
 
 import io.micrometer.common.util.StringUtils;
 import netconnection.app.back.domain.model._shared.Address;
+import netconnection.app.back.domain.model._shared.Phone;
 
 public class Customer {
 
     private String id;
-    private String name;
+    private Name name;
 
     private String email;
 
     private CPF cpf;
 
-    private String phone;
+    private Phone phone;
 
     private Address address;
 
-    public Customer(){
+
+    public Customer(String _id, Name _name, String _email, CPF _cpf, Phone _phone, Address _address){
+        this.setId(_id);
+        this.setName(_name);
+        this.setEmail(_email);
+        this.setCpf(_cpf);
+        this.setPhone(_phone);
+        this.setAddress(_address);
 
     }
 
-    public Customer(String _id, String _name, String _email, CPF _cpf, String _phone, Address _address){
-        this.id = _id;
-        this.name = _name;
-        this.email = _email;
-        this.cpf = _cpf;
-        this.phone= _phone;
-        this.address =_address;
-
-
-        this.validate();
-
+    private void setId(String id) {
+        if(StringUtils.isEmpty(id)){
+            throw new IllegalArgumentException("ID must not be empty");
+        }
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    private void setName(Name name) {
+        if(name == null){
+            throw new IllegalArgumentException("Name must not be null");
+
+        }
+        this.name = name;
+    }
+
+    private void setEmail(String email) {
+        if(StringUtils.isEmpty(email)){
+            throw new IllegalArgumentException("E-mail must not be empty");
+
+        }
+        this.email = email;
+    }
+
+    private void setCpf(CPF cpf) {
+
+        if(cpf == null){
+            throw new IllegalArgumentException("CPF must not be null");
+
+        }
+        this.cpf = cpf;
+    }
+
+    private void setPhone(Phone phone) {
+        if(phone == null){
+            throw new IllegalArgumentException("Phone number must not be empty");
+
+        }
+        this.phone = phone;
+    }
+
+    private void setAddress(Address address) {
+        if(address == null){
+            throw new IllegalArgumentException("Address number must not be empty");
+
+        }
+        this.address = address;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public CPF getCpf() {
-        return cpf;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
 
     public Address getAddress() {
         return address;
     }
 
-
-
-    private void validate() {
-        if(StringUtils.isEmpty(this.id)){
-            throw new IllegalArgumentException("ID must not be empty");
-
-        }
-        if(StringUtils.isEmpty(this.name)){
-            throw new IllegalArgumentException("Name must not be empty");
-
-        }
-        if (StringUtils.isEmpty(this.email)){
-            throw new IllegalArgumentException("Email must not be empty");
-
-        }
-        if(StringUtils.isEmpty(this.phone)){
-            throw new IllegalArgumentException("Phone number must not be empty");
-
-        }
-    }
 
 }

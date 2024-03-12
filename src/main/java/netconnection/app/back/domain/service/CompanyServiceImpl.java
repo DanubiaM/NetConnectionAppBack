@@ -1,5 +1,6 @@
 package netconnection.app.back.domain.service;
 
+import netconnection.app.back.domain.model._shared.Phone;
 import netconnection.app.back.domain.model.company.Company;
 import netconnection.app.back.domain.port.CompanyRepositoryPort;
 import netconnection.app.back.domain.port.CompanyServicePort;
@@ -15,7 +16,18 @@ public class CompanyServiceImpl implements CompanyServicePort {
     }
 
     @Override
-    public Company save(Company company) {
+    public Company register(Company company) {
+
+        if(company.hasError()){
+            throw new IllegalArgumentException(company.errorMessages());
+        }
+
+        //Verify is not exist other Company with same CNPJ number.
+        Company companyExist = this.companyRepositoryPort.findByCNPJNumber(company.getCNPJNumber());
+
+        if(companyExist != null){
+            throw new IllegalArgumentException("Company already exist");
+        }
 
         this.companyRepositoryPort.save(company);
 
@@ -23,13 +35,12 @@ public class CompanyServiceImpl implements CompanyServicePort {
     }
 
     @Override
-    public Company findById(String id) {
+    public Company updatePhoneNumber(Company company, Phone newPhoneNumber) {
 
-        return this.companyRepositoryPort.findById(id);
+        company.updatePhoneNumber(newPhoneNumber);
+
+        return company;
     }
 
-    @Override
-    public List<Company> findAll() {
-        return this.companyRepositoryPort.findAll();
-    }
+
 }

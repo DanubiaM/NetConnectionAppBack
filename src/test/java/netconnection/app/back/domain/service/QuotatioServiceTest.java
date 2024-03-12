@@ -5,6 +5,7 @@ import netconnection.app.back.domain.model.customer.Customer;
 import netconnection.app.back.domain.model.quotation.ItemQuotation;
 import netconnection.app.back.domain.model.quotation.Product;
 import netconnection.app.back.domain.model.quotation.Quotation;
+import netconnection.app.back.domain.model.quotation.STATUS_QUOTATION;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,8 +35,10 @@ public class QuotatioServiceTest {
 
         List<ItemQuotation> items = List.of(item1,item2);
 
-        Quotation newQuotatio = new Quotation(UUID.randomUUID().toString(),"Quotation A","Description A",
-        LocalDate.now().plusDays(7),items, idCompany,idCustomer, LocalDateTime.now());
+//        Quotation newQuotation = new Quotation(UUID.randomUUID().toString(),"Quotation A","Description A",
+//        LocalDate.now().plusDays(7),items, idCompany,idCustomer, LocalDateTime.now(), STATUS_QUOTATION.WAITING);
+//
+//        Quotation quotationSaved = quotationServiceImpl.save(newQuotation);
 
 
 

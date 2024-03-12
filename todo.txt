@@ -1,2 +1,10 @@
 Melhorias Possiveis:
-   -> Adicionar Factories para as Entidades
+   -> Adicionar Factories para as Entidades (se precisar)
+   -> Verificar maneira de contornar o problema de, a cada alteração em uma entidade precisar de alterar
+   todos os lugares onde a implementa
+   -> Eventos para validação (validação não apenas quando cria a entidade e sim quando sofrer qualquer
+    alteração)
+    -> Utilizar o Either Pattern para tratamento de erros nas camadas de serviço.
+
+
+   
