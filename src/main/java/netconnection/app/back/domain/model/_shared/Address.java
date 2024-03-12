@@ -22,8 +22,14 @@ public class Address extends ValueObject {
         this.setCity(_city);
         this.setCep(_cep);
 
+        valid();
 
     }
+    private void valid() {
+        if(this.notification.hasErrors()) throw new IllegalArgumentException(notification.errorMessage());
+
+    }
+
 
     private void setDescription(String description) {
         if(StringUtils.isEmpty(description) ){

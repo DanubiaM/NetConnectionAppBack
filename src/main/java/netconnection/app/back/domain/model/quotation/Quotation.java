@@ -1,15 +1,16 @@
 package netconnection.app.back.domain.model.quotation;
 
 import io.micrometer.common.util.StringUtils;
+import netconnection.app.back.domain.model.Entity;
+import netconnection.app.back.domain.model.validation.Notification;
 
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Quotation {
+public class Quotation extends Entity {
 
-    private String id;
     private Information information;
     private LocalDate validity;
     private List<ItemQuotation> items;
@@ -22,9 +23,9 @@ public class Quotation {
 
 
 
-    public Quotation(String _id, Information _information, String _description, LocalDate _validity, List<ItemQuotation> _items,
+    public Quotation(String _id, Information _information, LocalDate _validity, List<ItemQuotation> _items,
                      String _idCompany, String _idCustomer) {
-        this.setId(_id);
+        super(_id, new Notification());
         this.setInformation(_information);
         this.setValidity(_validity);
         this.setItems(_items);
@@ -33,61 +34,58 @@ public class Quotation {
         this.setCreatedAt(LocalDateTime.now());
         this.status = STATUS_QUOTATION.WAITING;
 
+        valid();
+
     }
 
-    private void setId(String id) {
-        if(StringUtils.isEmpty(id)){
-            throw new IllegalArgumentException("ID must not be empty");
-        }
-        this.id = id;
+    private void valid() {
+        if(this.notification.hasErrors()) notification.addError(notification.errorMessage());
+
     }
+
 
     private void setInformation(Information information) {
         if(information == null){
-            throw new IllegalArgumentException("Information Quotation must not be null");
+            notification.addError("Information Quotation must not be null");
         }
         this.information = information;
     }
 
     private void setValidity(LocalDate validity) {
-        if(this.validity == null){
-            throw new IllegalArgumentException("Validity must not be null");
+        if(validity == null){
+            notification.addError("Validity must not be null");
         }
         this.validity = validity;
     }
 
     private void setItems(List<ItemQuotation> items) {
-        if(this.items == null || this.items.isEmpty()){
-            throw new IllegalArgumentException("Items must not be empty");
+        if(items == null || items.isEmpty()){
+            notification.addError("Items must not be empty");
         }
         this.items = items;
     }
 
     private void setCreatedAt(LocalDateTime createdAt) {
-        if(this.createdAt == null){
-            throw new IllegalArgumentException("Created at must not be null");
+        if(createdAt == null){
+            notification.addError("Created at must not be null");
         }
         this.createdAt = createdAt;
     }
 
     private void setIdCompany(String idCompany) {
-        if(StringUtils.isEmpty(this.idCompany) ){
-            throw new IllegalArgumentException("Company ID must not be empty");
+        if(StringUtils.isEmpty(idCompany) ){
+            notification.addError("Company ID must not be empty");
         }
 
         this.idCompany = idCompany;
     }
 
     private void setIdCustomer(String idCustomer) {
-        if(StringUtils.isEmpty(this.idCustomer)){
-            throw new IllegalArgumentException("Customer ID must not be empty");
+        if(StringUtils.isEmpty(idCustomer)){
+            notification.addError("Customer ID must not be empty");
         }
         this.idCustomer = idCustomer;
     }
 
-
-    public String getId() {
-        return this.id;
-    }
 
 }

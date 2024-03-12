@@ -22,6 +22,12 @@ public class Company extends Entity {
         this.setPhone(_phone);
         this.setEmail(_email);
 
+        valid();
+    }
+
+    private void valid() {
+        if(this.notification.hasErrors()) throw new IllegalArgumentException(notification.errorMessage());
+
     }
 
     private void setCnpj(CNPJ cnpj) {

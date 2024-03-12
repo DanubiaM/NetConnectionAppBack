@@ -1,12 +1,13 @@
 package netconnection.app.back.domain.model.customer;
 
 import io.micrometer.common.util.StringUtils;
+import netconnection.app.back.domain.model.Entity;
 import netconnection.app.back.domain.model._shared.Address;
 import netconnection.app.back.domain.model._shared.Phone;
+import netconnection.app.back.domain.model.validation.Notification;
 
-public class Customer {
+public class Customer extends Entity {
 
-    private String id;
     private Name name;
 
     private String email;
@@ -19,25 +20,25 @@ public class Customer {
 
 
     public Customer(String _id, Name _name, String _email, CPF _cpf, Phone _phone, Address _address){
-        this.setId(_id);
+        super(_id, new Notification());
         this.setName(_name);
         this.setEmail(_email);
         this.setCpf(_cpf);
         this.setPhone(_phone);
         this.setAddress(_address);
 
+        valid();
     }
 
-    private void setId(String id) {
-        if(StringUtils.isEmpty(id)){
-            throw new IllegalArgumentException("ID must not be empty");
-        }
-        this.id = id;
+    private void valid() {
+        if(notification.hasErrors()) throw new IllegalArgumentException(notification.errorMessage());
     }
+
+
 
     private void setName(Name name) {
         if(name == null){
-            throw new IllegalArgumentException("Name must not be null");
+            notification.addError("Name must not be null");
 
         }
         this.name = name;
@@ -45,7 +46,7 @@ public class Customer {
 
     private void setEmail(String email) {
         if(StringUtils.isEmpty(email)){
-            throw new IllegalArgumentException("E-mail must not be empty");
+            notification.addError("E-mail must not be empty");
 
         }
         this.email = email;
@@ -54,7 +55,7 @@ public class Customer {
     private void setCpf(CPF cpf) {
 
         if(cpf == null){
-            throw new IllegalArgumentException("CPF must not be null");
+            notification.addError("CPF must not be null");
 
         }
         this.cpf = cpf;
@@ -62,7 +63,7 @@ public class Customer {
 
     private void setPhone(Phone phone) {
         if(phone == null){
-            throw new IllegalArgumentException("Phone number must not be empty");
+            notification.addError("Phone number must not be empty");
 
         }
         this.phone = phone;
@@ -70,15 +71,12 @@ public class Customer {
 
     private void setAddress(Address address) {
         if(address == null){
-            throw new IllegalArgumentException("Address number must not be empty");
+            notification.addError("Address number must not be empty");
 
         }
         this.address = address;
     }
 
-    public String getId() {
-        return id;
-    }
 
 
     public Address getAddress() {

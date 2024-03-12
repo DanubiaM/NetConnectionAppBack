@@ -15,13 +15,19 @@ public class CNPJ extends ValueObject {
     STATUS_COMPANY status;
 
     public CNPJ(String _number, String _corporateName, Address _address, STATUS_COMPANY _status){
+
         super(new Notification());
        this.setNumber(_number);
        this.setCorporateName(_corporateName);
        this.setAddress(_address);
        this.setStatus(_status);
 
+       valid();
 
+    }
+
+    private void valid() {
+        if(this.notification.hasErrors()) throw new IllegalArgumentException(notification.errorMessage());
     }
 
     private void setNumber(String number) {

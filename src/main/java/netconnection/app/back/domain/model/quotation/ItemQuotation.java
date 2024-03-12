@@ -1,37 +1,50 @@
 package netconnection.app.back.domain.model.quotation;
 
-public class ItemQuotation {
+import netconnection.app.back.domain.model.ValueObject;
+import netconnection.app.back.domain.model.validation.Notification;
+
+public class ItemQuotation  extends ValueObject {
 
     private Integer quantity;
     private Product product;
 
     private Float profitPercentage;
 
-    public ItemQuotation(Integer _quantity, Product _product) {
+    public ItemQuotation(Integer _quantity, Product _product, Float profit) {
+        super(new Notification());
         this.setQuantity(_quantity);
         this.setProduct(_product);
+        this.setProfitPercentage(profit);
+
+        valid();
     }
+
+    private void valid() {
+        if(this.notification.hasErrors()) throw new IllegalArgumentException(notification.errorMessage());
+
+    }
+
 
     public void setQuantity(Integer quantity) {
         if(quantity == null){
-            throw new IllegalArgumentException("Quantity must not be empty");
+            notification.addError("Quantity must not be empty");
         }
         if(quantity <= 0){
-            throw new IllegalArgumentException("Quantity must not be less or equal than 0");
+            notification.addError("Quantity must not be less or equal than 0");
         }
         this.quantity = quantity;
     }
 
     public void setProduct(Product product) {
         if(this.product ==  null){
-            throw new IllegalArgumentException("Product must not be empty");
+            notification.addError("Product must not be empty");
         }
         this.product = product;
     }
 
     public void setProfitPercentage(Float profitPercentage) {
         if(profitPercentage <= 0){
-            throw new IllegalArgumentException("Profit Percentage must not be less or equal than 0");
+            notification.addError("Profit Percentage must not be less or equal than 0");
         }
         this.profitPercentage = profitPercentage;
     }

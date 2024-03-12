@@ -14,6 +14,7 @@ public class Phone extends ValueObject {
         super(new Notification());
         this.setPhoneOne(phoneOne);
 
+        valid();
     }
 
     public Phone (String phoneOne, String phoneTwo){
@@ -21,7 +22,7 @@ public class Phone extends ValueObject {
         this.setPhoneOne(phoneOne);
         this.setPhoneTwo(phoneTwo);
 
-
+        valid();
     }
 
     public Phone (String phoneOne, String phoneTwo , String phoneThree){
@@ -29,6 +30,11 @@ public class Phone extends ValueObject {
         this.setPhoneOne(phoneOne);
         this.setPhoneTwo(phoneTwo);
         this.setPhoneThree(phoneThree);
+
+        valid();
+    }
+    private void valid() {
+        if(this.notification.hasErrors()) throw new IllegalArgumentException(notification.errorMessage());
 
     }
 
