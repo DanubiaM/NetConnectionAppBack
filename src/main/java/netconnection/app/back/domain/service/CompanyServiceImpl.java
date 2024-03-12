@@ -1,11 +1,10 @@
 package netconnection.app.back.domain.service;
 
 import netconnection.app.back.domain.model._shared.Phone;
+import netconnection.app.back.domain.model.company.CNPJ;
 import netconnection.app.back.domain.model.company.Company;
 import netconnection.app.back.domain.port.CompanyRepositoryPort;
 import netconnection.app.back.domain.port.CompanyServicePort;
-
-import java.util.List;
 
 public class CompanyServiceImpl implements CompanyServicePort {
 
@@ -40,6 +39,33 @@ public class CompanyServiceImpl implements CompanyServicePort {
         company.updatePhoneNumber(newPhoneNumber);
 
         return company;
+    }
+
+    @Override
+    public Company updateCNPJ(Company company, CNPJ newCNPJ) {
+
+
+        company.updateCNPJ(newCNPJ);
+
+        return company;
+    }
+
+    @Override
+    public void delete(Company company) {
+
+        companyRepositoryPort.delete(company);
+
+    }
+
+    @Override
+    public Company findById(String id) {
+        Company companyFind = companyRepositoryPort.findById(id);
+
+        if(companyFind != null){
+            return companyFind;
+        }
+
+        throw new IllegalArgumentException("Company not found");
     }
 
 

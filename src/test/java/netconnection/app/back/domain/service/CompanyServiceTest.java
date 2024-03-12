@@ -23,19 +23,23 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CompanyServiceTest {
 
     private static CompanyServiceImpl companyService;
+    Address address;
+    CNPJ cnpj;
+    Phone phoneNumber;
+    Company company;
 
     @Before
     public void startService(){
         companyService =  new CompanyServiceImpl(new FakeCompanyRepositoryPort());
+        address = new Address("Rua A.", "Q10", "VG", "78144034");
+        cnpj = new CNPJ("91.244.376/0001-05", " COMPANY A", address, STATUS_COMPANY.ACTIVE);
+        phoneNumber = new Phone("(69)999670867");
+        company = new Company(UUID.randomUUID().toString(), cnpj, "A COMPANY LTDA", phoneNumber, "someoneemail@email.com");
     }
 
     @Test
     public void shoudlBeCreatedNewCompany(){
         //GIVE
-        Address address = new Address("Rua A.", "Q10","VG","78144034");
-        CNPJ cnpj = new CNPJ("91.244.376/0001-05"," COMPANY A",address, STATUS_COMPANY.ACTIVE);
-        Phone phoneNumber = new Phone("(69)999670867");
-        Company company = new Company( UUID.randomUUID().toString(),cnpj,"A COMPANY LTDA",phoneNumber, "someoneemail@email.com");
 
         //WHEN
 
@@ -50,10 +54,7 @@ public class CompanyServiceTest {
     @Test
     public void shouldBeThrowExceptionWhenNumberCNPJAlreadyRegister(){
         //GIVE
-        Address address = new Address("Rua A.", "Q10", "VG", "78144034");
-        CNPJ cnpj = new CNPJ("91.244.376/0001-05", " COMPANY A", address, STATUS_COMPANY.ACTIVE);
-        Phone phoneNumber = new Phone("(69)999670867");
-        Company company = new Company(UUID.randomUUID().toString(), cnpj, "A COMPANY LTDA", phoneNumber, "someoneemail@email.com");
+
 
         //WHEN
 
@@ -66,10 +67,7 @@ public class CompanyServiceTest {
     @Test
     public void shouldBeUpdatePhoneNumber(){
         //GIVE
-        Address address = new Address("Rua A.", "Q10", "VG", "78144034");
-        CNPJ cnpj = new CNPJ("91.244.376/0001-05", " COMPANY A", address, STATUS_COMPANY.ACTIVE);
-        Phone phoneNumber = new Phone("(69)999670867");
-        Company company = new Company(UUID.randomUUID().toString(), cnpj, "A COMPANY LTDA", phoneNumber, "someoneemail@email.com");
+
 
         //WHEN
         Phone newPhoneNumber = new Phone("(69)999554472");
@@ -78,4 +76,38 @@ public class CompanyServiceTest {
         //THEN
         assertEquals(newPhoneNumber, companyUpdated.getPhoneNumber());
     }
+
+
+
+    //A test to update CNPJ
+    @Test
+    public void shouldBeUpdateCNPJ(){
+        //GIVE
+
+
+        //WHEN
+        CNPJ newCNPJ = new CNPJ("91.244.376/0001-05", " COMPANY B", address, STATUS_COMPANY.ACTIVE);
+
+        Company companyUpdated = companyService.updateCNPJ(company, newCNPJ);
+
+        //THEN
+        assertEquals(newCNPJ, companyUpdated.getCnpj());
+    }
+
+    //A test to delete company -> just call delete repository, check if exist is make by application service?
+    @Test
+    public void shouldBeDeleteCompany(){
+        //GIVE
+
+
+        //WHEN
+        companyService.delete(company);
+
+        //THEN
+//        assertThrows(IllegalArgumentException.class, () -> companyService.findById(company.getId()),
+//                "Company not found");
+    }
+
+
+
 }

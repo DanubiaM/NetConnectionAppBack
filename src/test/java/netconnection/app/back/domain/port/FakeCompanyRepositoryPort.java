@@ -32,7 +32,7 @@ public class FakeCompanyRepositoryPort implements CompanyRepositoryPort {
 
     }
 
-    @Override
+
     public List<Company> findAll() {
         Address address = new Address("Rua A.", "Q10","VG","78144034");
         CNPJ cnpj = new CNPJ("91.244.376/0001-05"," COMPANY A",address, STATUS_COMPANY.ACTIVE);
@@ -52,5 +52,10 @@ public class FakeCompanyRepositoryPort implements CompanyRepositoryPort {
 
         return new Company( UUID.randomUUID().toString(),cnpj,"A COMPANY LTDA",phoneNumber, "someoneemail@email.com");
 
+    }
+
+    @Override
+    public void delete(Company company) {
+        //does not do anything
     }
 }

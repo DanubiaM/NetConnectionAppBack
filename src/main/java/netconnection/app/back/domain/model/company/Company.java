@@ -2,10 +2,9 @@ package netconnection.app.back.domain.model.company;
 
 import io.micrometer.common.util.StringUtils;
 import netconnection.app.back.domain.model.Entity;
+import netconnection.app.back.domain.model._shared.Address;
 import netconnection.app.back.domain.model._shared.Phone;
 import netconnection.app.back.domain.model.validation.Notification;
-
-import java.util.UUID;
 
 public class Company extends Entity {
 
@@ -85,11 +84,20 @@ public class Company extends Entity {
     }
 
     public void updatePhoneNumber(Phone newPhoneNumber) {
-        this.phone = newPhoneNumber;
+        this.setPhone(newPhoneNumber);
     }
 
     public String getCNPJNumber() {
         return this.cnpj.number;
 
+    }
+
+
+    public void updateCNPJ(CNPJ newCNPJ) {
+        this.setCnpj(cnpj);
+    }
+
+    public CNPJ getCnpj() {
+        return this.cnpj;
     }
 }

@@ -116,4 +116,6 @@ public class CNPJ extends ValueObject {
     public boolean isDisable() {
         return  this.status.equals(STATUS_COMPANY.DISABLE);
     }
+
+
 }

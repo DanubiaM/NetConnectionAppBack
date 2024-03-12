@@ -10,7 +10,8 @@ public interface CompanyRepositoryPort {
 
     Company findById(String id);
 
-    List<Company> findAll();
 
     Company findByCNPJNumber(String cnpjNumber);
+
+    void delete(Company company);
 }
